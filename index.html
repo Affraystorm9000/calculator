@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div id="calc">
+        <h3 id="output"></h3>
+        <div id="btnContainer">
+    </div>
+    
+<script>
+    function add(num1, num2){
+        let result = num1 + num2;
+        return result;
+    }
+
+    function subtract(num1, num2){
+        let result = num1 - num2;
+        return result;
+    }
+
+    function multiply(num1, num2){
+        let result = num1 * num2;
+        return result;
+    }
+
+    function divide(num1, num2){
+        let result = num1 / num2;
+        return result;
+    }
+
+    function operate(arr){
+        let num1 = parseInt(arr[0]);
+        let operator = arr[1];
+        let num2 = parseInt(arr[2]);
+        console.log("operate: " + num1 + operator + num2);
+        switch(operator) {
+            case "+":
+                return add(num1,num2);
+                break;
+            case "-":
+                return subtract(num1,num2);
+                break;
+            case "*":
+                return multiply(num1, num2);
+                break;
+            case "/":
+                return divide(num1, num2);
+                break;
+            default:
+                console.log("no valid operator");
+        
+    }
+    }
+    function processDisplayValue(str){
+        re = /(\+|-|\*|\/)/
+        console.log(str);
+        let arr;
+        arr = str.split(re);
+        console.log(arr);
+        let num1 = arr[0];
+        let operator = arr[1];
+        let num2 = arr[2];
+        console.log(num1,operator,num2);
+        return arr;
+    }
+    let displayValue = "";
+    const outputText = document.querySelector("#output");
+
+    function listener(e){
+        let id = e.target.id;
+        if(id == "btn12"){
+            displayValue = operate(processDisplayValue(displayValue));
+            outputText.textContent = displayValue;
+        }
+        else
+        if(id == "btn14"){
+            displayValue = "";
+            outputText.textContent = "";
+        }
+        
+        else{
+            displayValue = displayValue + e.target.textContent;
+            outputText.textContent = displayValue;
+        }
+    }
+    const btnContainer = document.querySelector("#btnContainer");
+    
+    for(let i = 0;i<16;i++){
+        const div = document.createElement("div");
+        const btn = document.createElement("button")
+        btn.setAttribute("id", `btn${i}`);
+        div.classList.add("btnDiv")
+
+        div.appendChild(btn);
+        btnContainer.appendChild(div);
+
+        btn.addEventListener("click", listener);
+
+        switch(i) {
+            case 0:
+                btn.textContent = "1";
+                break;
+            case 1:
+                btn.textContent = "2";
+                break;
+            case 2:
+                btn.textContent = "3";
+                break;
+            case 3:
+                btn.textContent = "+";
+                break;
+            case 4:
+                btn.textContent = "4";
+                break;
+            case 5:
+                btn.textContent = "5";
+                break;
+            case 6:
+                btn.textContent = "6";
+                break;
+            case 7:
+                btn.textContent = "-";
+                break;
+            case 8:
+                btn.textContent = "7";
+                break;
+            case 9:
+                btn.textContent = "8";
+                break;
+            case 10:
+                btn.textContent = "9";
+                break;
+            case 11:
+                btn.textContent = "*";
+                break;
+            case 12:
+                btn.textContent = "=";
+                break;
+            case 13:
+                btn.textContent = "0";
+                break;
+            case 14:
+                btn.textContent = "C";
+                break;
+            case 15:
+                btn.textContent = "/";
+                break;
+
+            
+
+        }
+        
+
+    }
+    
+
+
+    
+
+
+</script>
+
+</div>
+
+
+</body>
+
+
+</html>
